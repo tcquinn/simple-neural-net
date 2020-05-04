@@ -42,6 +42,6 @@ class Layer:
         self.d_cost_d_outputs = d_cost_d_outputs # (num_outputs, num_examples)
         self.d_cost_d_Z = self.d_cost_d_outputs * self.activation.d_activation_d_Z(self.Z, self.outputs) # (num_outputs, num_examples)
         self.d_cost_d_weights = np.dot(self.d_cost_d_Z, self.inputs.T) # (num_outputs, num_inputs)
-        self.d_cost_d_biases = np.sum(d_cost_d_Z, axis=1, keepdims=True) # (num_outputs, 1)
+        self.d_cost_d_biases = np.sum(self.d_cost_d_Z, axis=1, keepdims=True) # (num_outputs, 1)
         self.d_cost_d_inputs = np.dot(self.weights.T, self.d_cost_d_Z) # (num_inputs, num_examples)
         return d_cost_d_inputs
