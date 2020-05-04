@@ -4,9 +4,11 @@ class NeuralNet:
         self,
         layers,
         cost,
+        prediction
     ):
         self.layers = layers
         self.cost = cost
+        self.prediction = prediction
         self.num_layers = len(layers)
 
     def train(
@@ -34,3 +36,12 @@ class NeuralNet:
                     iteration_index,
                     cost
                 ))
+
+    def predict(
+        self,
+        inputs
+    ):
+        for layer_index in range(self.num_layers):
+            outputs = self.layers[layer_index].forward_propagate(inputs)
+            inputs = outputs
+        return self.prediction.predictions(outputs)
