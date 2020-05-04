@@ -28,7 +28,11 @@ class SigmoidActivation(Activation):
         # outputs: (num_outputs, num_examples)
         return np.reciprocal(np.add(1.0, np.exp(-Z))) # (num_outputs, num_examples)
 
-    def d_activation_d_Z(Z, outputs):
+    def d_activation_d_Z(
+        self,
+        Z,
+        outputs
+    ):
         # Z: (num_outputs, num_examples)
         # outputs: (num_outputs, num_examples)
         # d_activation_d_Z: (num_outputs, num_examples)
