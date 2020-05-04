@@ -23,6 +23,6 @@ class NeuralNet:
                 inputs = outputs
             cost = self.cost.cost(outputs, ground_truth_outputs)
             d_cost_d_outputs = self.cost.d_cost_d_outputs(outputs, ground_truth_outputs)
-            for layer_index in reversed(range(num_layers)):
+            for layer_index in reversed(range(self.num_layers)):
                 d_cost_d_inputs = self.layers[layer_index].backward_propagate(d_cost_d_outputs)
                 d_cost_d_outputs = d_cost_d_inputs
