@@ -1,3 +1,4 @@
+from tqdm.autonotebook import tqdm
 
 class NeuralNet:
     def __init__(
@@ -16,9 +17,14 @@ class NeuralNet:
         X,
         y,
         num_iterations,
-        learning_rate
+        learning_rate,
+        progress_bar=False
     ):
-        for iteration_index in range(num_iterations):
+        if progress_bar:
+            training_iterator = tqdm(range(num_iterations))
+        else:
+            training_iterator = range(num_iterations)
+        for iteration_index in training_iterator:
             inputs = X
             for layer in self.layers:
                 outputs = layer.forward_propagate(inputs)
@@ -31,11 +37,12 @@ class NeuralNet:
             for layer in self.layers:
                 layer.weights += -learning_rate*layer.d_cost_d_weights
                 layer.biases += -learning_rate*layer.d_cost_d_biases
-            if iteration_index % 100 == 0:
-                print('Iteration {}: cost {}'.format(
-                    iteration_index,
-                    cost
-                ))
+            if not progress_bar:
+                if iteration_index % 100 == 0:
+                    print('Iteration {}: cost {}'.format(
+                        iteration_index,
+                        cost
+                    ))
 
     def predict(
         self,
