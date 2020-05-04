@@ -26,7 +26,7 @@ setup(
     include_package_data=True,
     description='Minimal framework for creating a simple neural net',
     long_description=open('README.md').read(),
-    url='GITHUB_URL',
+    url='https://github.com/tcquinn/simple-neural-net',
     author='Theodore Quinn',
     author_email='tcquinn@tcquinn.org',
     install_requires=BASE_DEPENDENCIES,
