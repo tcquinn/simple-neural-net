@@ -33,10 +33,10 @@ class Layer:
 
     def backward_propagate(d_cost_d_outputs):
         # d_cost_d_outputs: (num_outputs, num_examples)
-        # d_outputs_d_Z: (num_outputs, num_examples)
         # d_cost_d_Z: (num_outputs, num_examples)
-        # d_Z_d_weights: (?)
         # d_cost_d_weights (num_outputs, num_inputs)
+        # d_cost_d_biases: (n_outputs, 1)
+        # d_cost_d_inputs: (n_inputs, num_training_examples)
         self.d_cost_d_outputs = d_cost_d_outputs
         self.d_cost_d_Z = self.d_cost_d_outputs * self.activation_function.d_activation_d_Z(self.Z, self.outputs) # (num_outputs, num_examples)
         self.d_cost_d_weights = np.dot(self.d_cost_d_Z, self.inputs.T) # (n_outputs, n_inputs)
