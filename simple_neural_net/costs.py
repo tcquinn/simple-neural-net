@@ -1,3 +1,5 @@
+import numpy as np
+
 class Cost:
     def cost(outputs, ground_truth):
         # outputs: (num_outputs, num_examples)
