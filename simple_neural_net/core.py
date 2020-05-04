@@ -37,8 +37,12 @@ class NeuralNet:
             for layer in self.layers:
                 layer.weights += -learning_rate*layer.d_cost_d_weights
                 layer.biases += -learning_rate*layer.d_cost_d_biases
-            if not progress_bar:
-                if iteration_index % 100 == 0:
+            # if progress_bar:
+            #     training_iterator.set_postfix(cost=cost)
+            if iteration_index % 100 == 0:
+                if progress_bar:
+                    training_iterator.set_postfix(cost=cost)
+                else:
                     print('Iteration {}: cost {}'.format(
                         iteration_index,
                         cost
