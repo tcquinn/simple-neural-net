@@ -10,7 +10,11 @@ class Cost:
         raise NotImplementedError('Method must be implemented by child class')
 
 class NegativeLogLikelihoodCost(Cost):
-    def cost(outputs, ground_truth):
+    def cost(
+        self,
+        outputs,
+        ground_truth
+    ):
         # outputs: (num_outputs, num_examples)
         # ground_truth: (num_classes, num_examples)
         # cost: Scalar
@@ -36,7 +40,11 @@ class NegativeLogLikelihoodCost(Cost):
             )
         )
 
-    def d_cost_d_outputs(outputs, ground_truth):
+    def d_cost_d_outputs(
+        self,
+        outputs,
+        ground_truth
+    ):
         # outputs: (num_outputs, num_examples)
         # ground_truth: (num_classes, num_examples)
         # d_cost_d_outputs: (num_outputs, num_examples)

@@ -1,6 +1,7 @@
 
 class NeuralNet:
     def __init__(
+        self,
         layers,
         cost,
     ):
@@ -9,6 +10,7 @@ class NeuralNet:
         self.num_layers = len(layers)
 
     def train(
+        self,
         num_iterations,
         learning_rate,
         ground_truth_inputs,

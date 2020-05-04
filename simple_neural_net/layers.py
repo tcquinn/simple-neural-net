@@ -2,6 +2,7 @@ import numpy as np
 
 class Layer:
     def __init__(
+        self,
         num_inputs,
         num_outputs,
         activation,
@@ -24,7 +25,10 @@ class Layer:
             self.bias_initialization_multiplier
         ) # (num_outputs, 1)
 
-    def forward_propagate(inputs):
+    def forward_propagate(
+        self,
+        inputs
+    ):
         # inputs: (num_inputs, num_examples)
         # Z: (num_outputs, num_examples)
         # outputs: (num_outputs, num_examples)
@@ -33,7 +37,10 @@ class Layer:
         self.outputs = self.activation.activation(self.Z) # (num_outputs, num_examples)
         return outputs
 
-    def backward_propagate(d_cost_d_outputs):
+    def backward_propagate(
+        self,
+        d_cost_d_outputs
+    ):
         # d_cost_d_outputs: (num_outputs, num_examples)
         # d_cost_d_Z: (num_outputs, num_examples)
         # d_cost_d_weights (num_outputs, num_inputs)
