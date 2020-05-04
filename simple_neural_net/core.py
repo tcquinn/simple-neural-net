@@ -16,13 +16,13 @@ class NeuralNet:
         ground_truth_inputs,
         ground_truth_outputs
     ):
-        for iteration_index in num_layers:
+        for iteration_index in range(num_iterations):
             inputs = ground_truth_inputs
-            for layer_index in range(num_layers):
-                outputs = layers[layer_index].forward_propagate(inputs)
+            for layer_index in range(self.num_layers):
+                outputs = self.layers[layer_index].forward_propagate(inputs)
                 inputs = outputs
             self.cost = cost.cost(outputs, ground_truth_outputs)
             d_cost_d_outputs = cost.d_cost_d_outputs(outputs, ground_truth)
             for layer_index in reversed(range(num_layers)):
-                d_cost_d_inputs = layers[layer_index].backward_propagate(d_cost_d_outputs)
+                d_cost_d_inputs = self.layers[layer_index].backward_propagate(d_cost_d_outputs)
                 d_cost_d_outputs = d_cost_d_inputs
