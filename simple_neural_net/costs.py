@@ -1,6 +1,6 @@
 import numpy as np
 
-class Cost:
+class CostModel:
     def cost(outputs, ground_truth):
         # outputs: (num_outputs, num_examples)
         # cost: Scalar
@@ -11,7 +11,7 @@ class Cost:
         # d_cost_d_outputs: (num_outputs, num_examples)
         raise NotImplementedError('Method must be implemented by child class')
 
-class CrossEntropyBinaryClassification(Cost):
+class CrossEntropyBinaryClassificationCostModel(CostModel):
     def cost(
         self,
         outputs,

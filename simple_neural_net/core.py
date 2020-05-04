@@ -3,12 +3,12 @@ class NeuralNet:
     def __init__(
         self,
         layers,
-        cost,
-        prediction
+        cost_model,
+        prediction_model
     ):
         self.layers = layers
-        self.cost = cost
-        self.prediction = prediction
+        self.cost_model = cost_model
+        self.prediction_model = prediction_model
         self.num_layers = len(layers)
 
     def train(
@@ -23,8 +23,8 @@ class NeuralNet:
             for layer in self.layers:
                 outputs = layer.forward_propagate(inputs)
                 inputs = outputs
-            cost = self.cost.cost(outputs, ground_truth_outputs)
-            d_cost_d_outputs = self.cost.d_cost_d_outputs(outputs, ground_truth_outputs)
+            cost = self.cost_model.cost(outputs, ground_truth_outputs)
+            d_cost_d_outputs = self.cost_model.d_cost_d_outputs(outputs, ground_truth_outputs)
             for layer in reversed(self.layers):
                 d_cost_d_inputs = layer.backward_propagate(d_cost_d_outputs)
                 d_cost_d_outputs = d_cost_d_inputs
@@ -44,4 +44,4 @@ class NeuralNet:
         for layer_index in range(self.num_layers):
             outputs = self.layers[layer_index].forward_propagate(inputs)
             inputs = outputs
-        return self.prediction.predictions(outputs)
+        return self.prediction_model.predictions(outputs)

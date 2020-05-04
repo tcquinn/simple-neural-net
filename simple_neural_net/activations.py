@@ -1,6 +1,6 @@
 import numpy as np
 
-class Activation:
+class ActivationModel:
     def activation(
         self,
         Z
@@ -19,7 +19,7 @@ class Activation:
         # d_activation_d_Z: (num_outputs, num_examples)
         raise NotImplementedError('Method must be implemented by child class')
 
-class SigmoidActivation(Activation):
+class SigmoidActivationModel(ActivationModel):
     def activation(
         self,
         Z
@@ -38,7 +38,7 @@ class SigmoidActivation(Activation):
         # d_activation_d_Z: (num_outputs, num_examples)
         return np.multiply(outputs, np.subtract(1, outputs)) # (num_outputs, num_examples)
 
-class TanhActivation(Activation):
+class TanhActivationModel(ActivationModel):
     def activation(
         self,
         Z
@@ -57,7 +57,7 @@ class TanhActivation(Activation):
         # d_activation_d_Z: (num_outputs, num_examples)
         return np.subtract(1, np.square(outputs)) # (num_outputs, num_examples)
 
-class ReLUActivation(Activation):
+class ReLUActivationModel(ActivationModel):
     def activation(
         self,
         Z

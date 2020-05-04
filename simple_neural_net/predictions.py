@@ -1,6 +1,6 @@
 import numpy as np
 
-class Prediction:
+class PredictionModel:
     def predictions(
         self,
         outputs
@@ -9,7 +9,7 @@ class Prediction:
         # predictions: (?, num_examples)
         raise NotImplementedError('Method must be implemented by child class')
 
-class BinaryClassificationPrediction(Prediction):
+class BinaryClassificationPredictionModel(PredictionModel):
     def predictions(
         self,
         outputs
