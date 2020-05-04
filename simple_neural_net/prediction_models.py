@@ -16,4 +16,5 @@ class BinaryClassificationPredictionModel(PredictionModel):
     ):
         # outputs: (1, num_examples)
         # predictions: (1, num_examples)
-        return np.around(outputs).astype('int')
+        y_hat = np.around(outputs).astype('int')
+        return y_hat
