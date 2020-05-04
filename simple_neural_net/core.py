@@ -20,17 +20,17 @@ class NeuralNet:
     ):
         for iteration_index in range(num_iterations):
             inputs = ground_truth_inputs
-            for layer_index in range(self.num_layers):
-                outputs = self.layers[layer_index].forward_propagate(inputs)
+            for layer in self.layers:
+                outputs = layer.forward_propagate(inputs)
                 inputs = outputs
             cost = self.cost.cost(outputs, ground_truth_outputs)
             d_cost_d_outputs = self.cost.d_cost_d_outputs(outputs, ground_truth_outputs)
-            for layer_index in reversed(range(self.num_layers)):
-                d_cost_d_inputs = self.layers[layer_index].backward_propagate(d_cost_d_outputs)
+            for layer in reversed(self.layers):
+                d_cost_d_inputs = layer.backward_propagate(d_cost_d_outputs)
                 d_cost_d_outputs = d_cost_d_inputs
-            for layer_index in range(self.num_layers):
-                self.layers[layer_index].weights += -learning_rate*self.layers[layer_index].d_cost_d_weights
-                self.layers[layer_index].biases += -learning_rate*self.layers[layer_index].d_cost_d_biases
+            for layer in self.layers:
+                layer.weights += -learning_rate*layer.d_cost_d_weights
+                layer.biases += -learning_rate*layer.d_cost_d_biases
             if iteration_index % 100 == 0:
                 print('Iteration {}: cost {}'.format(
                     iteration_index,
